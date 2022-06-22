@@ -1,0 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class characther : MonoBehaviour
+{
+    private Animator animacao;
+
+    void Start()
+    {
+        //ANIMACAO
+        animacao = this.GetComponent<Animator>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Translate(0, 0, 1 * Time.deltaTime);
+        animacao.SetBool("running", true);
+        animacao.SetBool("died", false);
+
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        transform.Translate(0, 0, 0 * Time.deltaTime);
+        animacao.SetBool("running", false);
+        animacao.SetBool("died", false);
+    }
+}
